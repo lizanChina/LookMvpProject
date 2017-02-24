@@ -30,9 +30,9 @@
 ###mvp设计模式 
     1.Model:业务逻辑和实体模型
     2.View:View通常来说是由Activity实现的，它会包含一个Presenter的引用，View要做的就只是在每次有接口
-    调用的时候（比如按钮点击后）调用Presenter方法。
+调用的时候（比如按钮点击后）调用Presenter方法。
     3.主要作为沟通View和Model的桥梁，它从Model层检索数据后，返回给View层，但是不像MVC结构，因为它也
-    可以决定与View层的交互操作。
+可以决定与View层的交互操作。
     
 ###ListView和GridView，RecycleView的通用数据适配器工具类封装 （具体请看源代码）
 
