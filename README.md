@@ -1,7 +1,7 @@
    RxJava+Retrofit+okhttp+glide+mvp+butterknife实现的简易开源项目
 ====
 
-##首先介绍下该项目用到的技术点和亮点
+###首先介绍下该项目用到的技术点和亮点
 1. Rxjava+Retrofit+okhttp搭建的网络框架
 2. mvp设计模式
 3. butterknife注解方式查找控件，减少findViewById冗余代码
