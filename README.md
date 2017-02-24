@@ -41,7 +41,7 @@
 ####[点击进入我的博客](http://blog.csdn.net/rjgcszlc "尽人事看天意")
 
 ###效果图展示
-![](https://github.com/zlc921022/LookMvpProject/raw/master/image/mn.jpg)
+![](https://github.com/zlc921022/LookMvpProject/raw/master/image/beauty.jpg)
 ###联系方式
     QQ:1509815887
     Email:zlc921022@163.com
