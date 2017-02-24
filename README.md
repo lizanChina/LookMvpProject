@@ -8,3 +8,17 @@
 4. Glide图片加载框架
 5. Recyclerview结合SwipeRefreshLayout实现列表和下拉刷新
 6. 封装了ListView和GridView，RecycleView的通用数据适配器工具类
+
+####需要添加的库文件
+compile 'com.jakewharton:butterknife:5.1.1'
+compile 'com.android.support:recyclerview-v7:23.1.1'
+compile 'com.github.bumptech.glide:glide:3.7.0'
+compile 'jp.wasabeef:glide-transformations:2.0.1'
+compile 'com.android.support:design:23.3.0'
+
+compile 'io.reactivex:rxjava:+'
+compile 'io.reactivex:rxandroid:1.2.0'
+compile 'com.squareup.retrofit2:retrofit:+'
+compile 'com.squareup.retrofit2:converter-gson:+'
+compile 'com.squareup.retrofit2:adapter-rxjava:+'
+compile 'com.android.support:cardview-v7:23.3.0'
