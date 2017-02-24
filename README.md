@@ -36,5 +36,5 @@
 
 ###glide实现的图片加载框架(具体请看源代码)
 
-####[我的博客](http://blog.csdn.net/rjgcszlc "尽人事看天意")]
+####[我的博客](http://blog.csdn.net/rjgcszlc "尽人事看天意")
 
