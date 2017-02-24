@@ -23,7 +23,18 @@
     compile 'com.squareup.retrofit2:adapter-rxjava:+'
     compile 'com.android.support:cardview-v7:23.3.0'
     
- ###Rxjava+Retrofit+okhttp搭建的网络框架
-```Java
-public static void main(String[]args){} //Java
-```
+###Rxjava+Retrofit+okhttp搭建的网络框架
+    项目里面有一个HttpUtils工具类 调用requestNetByPost(Observable observable, final OnResultListener resultListener)方法即可
+    参数分别是Observable观察者对象和创建一个回调监听接口，实现网络数据加载成功和失败的方法
+    
+###mvp设计模式 
+    1.Model:业务逻辑和实体模型
+    2.View:View通常来说是由Activity实现的，它会包含一个Presenter的引用，View要做的就只是在每次有接口调用的时候（比如按钮点击后）调用Presenter的法。
+    3.主要作为沟通View和Model的桥梁，它从Model层检索数据后，返回给View层，但是不像MVC结构，因为它也可以决定与View层的交互操作。
+    
+###ListView和GridView，RecycleView的通用数据适配器工具类封装 （具体请看源代码）
+
+###glide实现的图片加载框架(具体请看源代码)
+
+###[我的博客(http://blog.csdn.net/rjgcszlc '尽人事看天意')]
+
