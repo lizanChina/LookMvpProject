@@ -22,3 +22,8 @@
     compile 'com.squareup.retrofit2:converter-gson:+'
     compile 'com.squareup.retrofit2:adapter-rxjava:+'
     compile 'com.android.support:cardview-v7:23.3.0'
+    
+ ###Rxjava+Retrofit+okhttp搭建的网络框架
+```Java
+public static void main(String[]args){} //Java
+```
