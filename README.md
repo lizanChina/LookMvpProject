@@ -43,7 +43,7 @@
 ###效果图展示
 ![](https://github.com/zlc921022/LookMvpProject/raw/master/image/beauty.png)
 ###联系方式
-    QQ:1509815887
-    Email:zlc921022@163.com
+    QQ:1509815887
+    email:zlc921022@163.com
 ###感谢
     如果觉得好就给我右上角star点一下吧, 如果觉得不好 欢迎批评指点 Thank you very much!
