@@ -17,10 +17,8 @@ import java.util.List;
 
 /**
  * Created by zlc on 2017/2/8.
- * //妹子数据适配器
- *
+ * 妹子数据适配器
  */
-
 public class MeiziAdapter extends CommonRecyclerViewAdapter<MeiziInfo.MeiziBean> {
 
 
@@ -44,8 +42,6 @@ public class MeiziAdapter extends CommonRecyclerViewAdapter<MeiziInfo.MeiziBean>
             params.height = (w * 9) / 12;
             id_iv_meizi.setLayoutParams(params);
             ImageUtil.showRoundedImage(id_iv_meizi,meizi.url);
-
-
         }
     }
 
