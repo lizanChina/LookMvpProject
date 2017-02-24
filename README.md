@@ -10,8 +10,8 @@
 6. 封装了ListView和GridView，RecycleView的通用数据适配器工具类
 
 ####需要添加的库文件
-      compile 'com.jakewharton:butterknife:5.1.1'<br>
-    compile 'com.android.support:recyclerview-v7:23.1.1'<br>
+   compile 'com.jakewharton:butterknife:5.1.1'<br>
+   compile 'com.android.support:recyclerview-v7:23.1.1'<br>
 <tab>compile 'com.github.bumptech.glide:glide:3.7.0'<br>
 <tab>compile 'jp.wasabeef:glide-transformations:2.0.1'<br>
 <tab>compile 'com.android.support:design:23.3.0'<br>
