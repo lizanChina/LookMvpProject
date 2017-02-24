@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">仿知乎</string>
+
+    <string name="zhihu" translatable="false">知乎日报</string>
+    <string name="topnews" translatable="false">网易头条</string>
+    <string name="meizi" translatable="false">每日看看</string>
+
+    <string name="filter" translatable="false">打开</string>
+    <string name="about" translatable="false">关于</string>
+
+</resources>
