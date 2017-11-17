@@ -22,9 +22,9 @@ public class HttpUtils {
 
     //Post方式请求网络
     //Bill: public <T>这个T是个修饰符的功能，表示是个泛型方法，就像有static修饰的方法是个静态方法一样。表示传入参数有泛型
-    public static <T> void requestNetByPost(Observable observable, final OnResultListener resultListener) {
+    public static <T> void requestNet(Observable observable, final OnResultListener resultListener) {
 
-        Logger.d("requestNetByPost");
+        Logger.d("requestNet");
 
         setSubscriber(observable, new Subscriber<T>() {
             @Override
@@ -75,9 +75,17 @@ public class HttpUtils {
     }
 
     //Get方式请求网络
+    public static void requestNetByPost(Observable observable, final OnResultListener resultListener) {
+
+        Logger.d("requestNetByPost");
+        requestNet(observable, resultListener);
+    }
+
+    //Get方式请求网络
     public static void requestNetByGet(Observable observable, final OnResultListener resultListener) {
 
-        requestNetByPost(observable, resultListener);
+        Logger.d("requestNetByGet");
+        requestNet(observable, resultListener);
     }
 
 

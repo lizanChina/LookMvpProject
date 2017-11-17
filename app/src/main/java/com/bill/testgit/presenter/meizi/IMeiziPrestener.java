@@ -6,6 +6,6 @@ package com.bill.testgit.presenter.meizi;
 
 public interface IMeiziPrestener {
 
-    void getMeiziInfo(String url, int page);
+    void getMeiziInfo(String type, int count, int page);
 
 }

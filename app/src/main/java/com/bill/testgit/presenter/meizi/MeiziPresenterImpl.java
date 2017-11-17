@@ -1,9 +1,9 @@
 package com.bill.testgit.presenter.meizi;
 
-import android.util.Log;
-
 import com.bill.testgit.bean.meizi.MeiziInfo;
 import com.bill.testgit.http.HttpUtils;
+import com.bill.testgit.http.Urls;
+import com.bill.testgit.http.helper.CacheHelper;
 import com.bill.testgit.http.helper.RetrofitHelper;
 import com.bill.testgit.http.service.IMeiziService;
 import com.bill.testgit.model.meizi.IMeiziModel;
@@ -29,27 +29,33 @@ public class MeiziPresenterImpl implements IMeiziPrestener {
 
 
     @Override
-    public void getMeiziInfo(String url, int page) {
+    public void getMeiziInfo(String type, int count, int page) {
 
-        Logger.d("MeiziPresenterImpl url is: " + url);
+        Logger.d("MeiziPresenterImpl Urls.baseUrl is: " + Urls.GANHUO_API);
+
+        Logger.d("MeiziPresenterImpl type is: " + type);
+        Logger.d("MeiziPresenterImpl count is: " + count);
         Logger.d("MeiziPresenterImpl page is: " + page);
 
-        Observable<MeiziInfo> observable = RetrofitHelper.getService(url, IMeiziService.class).getMeizhiData(page);
+        Observable<MeiziInfo> observable = RetrofitHelper.getService(Urls.GANHUO_API, IMeiziService.class).getMeizhiData(type, count, page);
         HttpUtils.requestNetByGet(observable, new HttpUtils.OnResultListener<MeiziInfo>() {
             @Override
             public void onSuccess(MeiziInfo meiziInfo) {
+
+                CacheHelper.getInstance().printCacheSize();
+
                 if (meiziInfo != null) {
                     Logger.d("meiziInfo.results.size() is: " + meiziInfo.results.size());
-//                    for (int i = 0; i < meiziInfo.results.size(); i++) {
-//                        MeiziInfo.printMeiziBean(meiziInfo.results.get(i));
-//                    }
+                    for (int i = 0; i < meiziInfo.results.size(); i++) {
+                        MeiziInfo.printMeiziBean(meiziInfo.results.get(i));
+                    }
                     iMeiziFragment.getMeiziDataList(meiziInfo.results);
                 }
             }
 
             @Override
             public void onError(Throwable error, String msg) {
-                Log.e("妹子info error", msg);
+                Logger.e("onError error", msg);
             }
         });
 

@@ -5,13 +5,11 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.bill.testgit.R;
 import com.bill.testgit.adapter.MeiziAdapter;
 import com.bill.testgit.bean.meizi.MeiziInfo;
-import com.bill.testgit.http.Urls;
 import com.bill.testgit.presenter.meizi.MeiziPresenterImpl;
 import com.bill.testgit.util.Logger;
 import com.bill.testgit.util.SwipeRefreshUtil;
@@ -37,7 +35,10 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment, Swipe
     private MeiziPresenterImpl meiziPrestener;
     private MeiziAdapter mMeiziAdapter;
 
+    private String type = "福利";
     private int page = 1;
+    private int count = 50;
+
     private LinearLayoutManager linearLayoutManager;
     private RecyclerView.OnScrollListener mloadmoreListener;
     private boolean loading;
@@ -55,7 +56,7 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment, Swipe
         SwipeRefreshUtil.setSiwpeLayout(mMeiziSwipe, mActivity, this);
         meiziInfos = new ArrayList<>();
         meiziPrestener = new MeiziPresenterImpl(this);
-        meiziPrestener.getMeiziInfo(Urls.GANHUO_API, page);
+        meiziPrestener.getMeiziInfo(type, count, page);
         setRecycleView();
     }
 
@@ -97,7 +98,7 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment, Swipe
 
     private void loadMoreData() {
         Logger.d("loadMoreData now page is: " + page);
-        meiziPrestener.getMeiziInfo(Urls.GANHUO_API, page);
+        meiziPrestener.getMeiziInfo(type, count, page);
 
     }
 
@@ -134,7 +135,7 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment, Swipe
                 meiziInfos.clear();
                 page = 1;
                 loading = false;
-                meiziPrestener.getMeiziInfo(Urls.GANHUO_API, page);
+                meiziPrestener.getMeiziInfo(type, count, page);
             }
         }, 1000);
     }

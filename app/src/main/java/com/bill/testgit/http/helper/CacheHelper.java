@@ -2,8 +2,10 @@ package com.bill.testgit.http.helper;
 
 
 import com.bill.testgit.application.MyApplication;
+import com.bill.testgit.util.Logger;
 
 import java.io.File;
+import java.io.IOException;
 
 import okhttp3.Cache;
 
@@ -21,10 +23,12 @@ public class CacheHelper {
 
     private CacheHelper() {
 
+
         cacheFile = new File(MyApplication.getContext().getCacheDir().getAbsolutePath(), "mycache");
         if (!cacheFile.exists()) {
             cacheFile.mkdir();
         }
+        Logger.d("cache path is: " + cacheFile.getAbsolutePath());
     }
 
 
@@ -46,6 +50,24 @@ public class CacheHelper {
     public Cache getCache() {
         if (mCache == null)
             mCache = new Cache(cacheFile, maxSize);
+
         return mCache;
+    }
+
+    //返回缓存对象
+    public void printCacheSize() {
+        if (mCache == null) {
+            Logger.e("mCache is null");
+            return;
+        }
+
+        Logger.d("mCache maxSize is: " + mCache.maxSize());
+        try {
+            Logger.d("mCache maxSize is: " + mCache.size());
+        } catch (IOException e) {
+            Logger.e("get cache size failed");
+            e.printStackTrace();
+        }
+
     }
 }

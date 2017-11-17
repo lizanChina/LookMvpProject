@@ -16,7 +16,7 @@ public interface IZhihuService {
     @GET("http://news-at.zhihu.com/api/4/news/before/{date}")
     Observable<ZhihuInfo> getTheDaily(@Path("date") String date);
 
-    @GET("api/4/news/latest")
+    @GET("http://news-at.zhihu.com/api/4/news/latest")
     Observable<ZhihuInfo> getLastDaily();
 
 
