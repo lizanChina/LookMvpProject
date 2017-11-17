@@ -2,6 +2,9 @@ package com.bill.testgit.application;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
+
+import com.bill.testgit.util.Logger;
 
 /**
  * Created by Bill on 2017/2/9.
@@ -13,6 +16,7 @@ public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
+        Logger.init(true, Log.VERBOSE, "Bill");
         super.onCreate();
         application = this;
     }

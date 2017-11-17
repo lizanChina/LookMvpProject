@@ -13,7 +13,7 @@ import com.bill.testgit.adapter.MeiziAdapter;
 import com.bill.testgit.bean.meizi.MeiziInfo;
 import com.bill.testgit.http.Urls;
 import com.bill.testgit.presenter.meizi.MeiziPresenterImpl;
-import com.bill.testgit.util.LogUtil;
+import com.bill.testgit.util.Logger;
 import com.bill.testgit.util.SwipeRefreshUtil;
 import com.bill.testgit.view.custom_view.GridItemDividerDecoration;
 import com.bill.testgit.view.meizi.IMeiziFragment;
@@ -96,8 +96,7 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment, Swipe
     }
 
     private void loadMoreData() {
-        Log.d(LogUtil.LogTag, "loadMoreData now page is: " + page);
-        Log.e("当前页数==", page + "");
+        Logger.d("loadMoreData now page is: " + page);
         meiziPrestener.getMeiziInfo(Urls.GANHUO_API, page);
 
     }
@@ -106,14 +105,15 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment, Swipe
     @Override
     public void getMeiziDataList(List<MeiziInfo.MeiziBean> meiziInfos) {
 
+        Logger.d("getMeiziDataList");
+
         mMeiziSwipe.setRefreshing(false);
         if (meiziInfos == null || meiziInfos.size() <= 0) {
-            Log.d(LogUtil.LogTag, "no data from server");
+            Logger.d("no data from server");
             return;
         }
         loading = false;
         this.meiziInfos.addAll(meiziInfos);
-        Log.e("妹子数据集合==", meiziInfos.size() + "");
         if (mMeiziAdapter == null) {
             mMeiziRecycle.setAdapter(mMeiziAdapter = new MeiziAdapter(mActivity, this.meiziInfos));
         } else {
@@ -126,7 +126,7 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment, Swipe
     @Override
     public void onRefresh() {
 
-        Log.d(LogUtil.LogTag, "onRefresh now");
+        Logger.d("onRefresh now");
 
         new Handler().postDelayed(new Runnable() {
             @Override

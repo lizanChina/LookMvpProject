@@ -8,7 +8,7 @@ import com.bill.testgit.http.helper.RetrofitHelper;
 import com.bill.testgit.http.service.IMeiziService;
 import com.bill.testgit.model.meizi.IMeiziModel;
 import com.bill.testgit.model.meizi.MeiziModelImpl;
-import com.bill.testgit.util.LogUtil;
+import com.bill.testgit.util.Logger;
 import com.bill.testgit.view.meizi.IMeiziFragment;
 
 import rx.Observable;
@@ -31,15 +31,18 @@ public class MeiziPresenterImpl implements IMeiziPrestener {
     @Override
     public void getMeiziInfo(String url, int page) {
 
-        Log.d(LogUtil.LogTag, "MeiziPresenterImpl url is: " + url);
-        Log.d(LogUtil.LogTag, "MeiziPresenterImpl page is: " + page);
+        Logger.d("MeiziPresenterImpl url is: " + url);
+        Logger.d("MeiziPresenterImpl page is: " + page);
 
         Observable<MeiziInfo> observable = RetrofitHelper.getService(url, IMeiziService.class).getMeizhiData(page);
         HttpUtils.requestNetByGet(observable, new HttpUtils.OnResultListener<MeiziInfo>() {
             @Override
             public void onSuccess(MeiziInfo meiziInfo) {
                 if (meiziInfo != null) {
-                    Log.d(LogUtil.LogTag, "meiziInfo.results.size() is: " + meiziInfo.results.size());
+                    Logger.d("meiziInfo.results.size() is: " + meiziInfo.results.size());
+//                    for (int i = 0; i < meiziInfo.results.size(); i++) {
+//                        MeiziInfo.printMeiziBean(meiziInfo.results.get(i));
+//                    }
                     iMeiziFragment.getMeiziDataList(meiziInfo.results);
                 }
             }

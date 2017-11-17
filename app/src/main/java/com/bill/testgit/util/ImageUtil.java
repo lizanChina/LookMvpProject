@@ -1,5 +1,6 @@
 package com.bill.testgit.util;
 
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -24,6 +25,7 @@ public class ImageUtil {
 
     public static void show(ImageView mImageView, String imageUrl) {
 
+        Logger.d("url is: " + imageUrl);
 
         Glide.with(MyApplication.getContext()).load(imageUrl)
                 .crossFade(0)
@@ -77,6 +79,8 @@ public class ImageUtil {
 
 
     public static void showRoundedImage(ImageView imageView, String imageUrl) {
+
+        Logger.d("showRoundedImage imageUrl is: " + imageUrl);
 
         Glide.with(MyApplication.getContext())                                 //可以传getApplicationContext Activity Fragment
                 .load(imageUrl)                                  //图片地址

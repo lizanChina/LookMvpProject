@@ -2,11 +2,10 @@ package com.bill.testgit.http;
 
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.bill.testgit.application.MyApplication;
-import com.bill.testgit.util.LogUtil;
+import com.bill.testgit.util.Logger;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -25,22 +24,21 @@ public class HttpUtils {
     //Bill: public <T>这个T是个修饰符的功能，表示是个泛型方法，就像有static修饰的方法是个静态方法一样。表示传入参数有泛型
     public static <T> void requestNetByPost(Observable observable, final OnResultListener resultListener) {
 
-        Log.d(LogUtil.LogTag, "requestNetByPost");
+        Logger.d("requestNetByPost");
 
         setSubscriber(observable, new Subscriber<T>() {
             @Override
             public void onCompleted() {
-                Log.e("onCompleted", "读取完成");
-                Log.d(LogUtil.LogTag, "HttpUtils requestNetByPost 读取完成");
+                Logger.d("HttpUtils requestNetByPost onCompleted");
             }
 
             @Override
             public void onError(Throwable error) {
-
+                Logger.d("HttpUtils requestNetByPost onError");
                 if (error != null && resultListener != null) {
                     resultListener.onError(error, error.getMessage());
                 } else if (resultListener != null) {
-                    Log.d(LogUtil.LogTag, "网络不给力");
+                    Logger.d("网络不给力");
                     resultListener.onError(new Exception("网络不给力"), "");
                     Toast.makeText(MyApplication.getContext(), "网络不给力", Toast.LENGTH_LONG).show();
                     return;
@@ -56,8 +54,7 @@ public class HttpUtils {
                         Toast.makeText(MyApplication.getContext(), "网络不给力", Toast.LENGTH_LONG).show();
                     }
                 }
-                Log.d(LogUtil.LogTag, "code= " + code);
-                Log.e("onError code==：", code + "");
+                Logger.e("onError code==：", code + "");
                 if (code >= 300 && code < 500) {
                     Toast.makeText(MyApplication.getContext(), "您的请求迷路了，请稍后再试", Toast.LENGTH_LONG).show();
                 } else if (code >= 500) {
@@ -69,7 +66,7 @@ public class HttpUtils {
 
             @Override
             public void onNext(T t) {
-
+                Logger.d("HttpUtils requestNetByPost onNext");
                 if (resultListener != null) {
                     resultListener.onSuccess(t);
                 }
@@ -87,7 +84,7 @@ public class HttpUtils {
     //订阅事件
     public static <T> void setSubscriber(Observable<T> observable, Subscriber<T> subscriber) {
 
-        Log.d(LogUtil.LogTag, "setSubscriber");
+        Logger.d("setSubscriber");
 
         observable.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
