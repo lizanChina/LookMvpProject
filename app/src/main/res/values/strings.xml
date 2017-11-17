@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">仿知乎</string>
+    <string name="app_name">testGit</string>
 
     <string name="zhihu" translatable="false">知乎日报</string>
     <string name="topnews" translatable="false">网易头条</string>

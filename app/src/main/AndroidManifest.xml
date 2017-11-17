@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zlc.lookmvp">
+    package="com.bill.testgit">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -10,9 +10,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".application.MyApplication"
+        android:name="com.bill.testgit.application.MyApplication"
         >
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name="com.bill.testgit.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
