@@ -13,7 +13,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 /**
  * 图片加载库参考
  * https://github.com/wasabeef/glide-transformations
- * */
+ */
 public class ImageUtil {
 
 
@@ -38,7 +38,7 @@ public class ImageUtil {
         Glide.with(MyApplication.getContext()).load(imageUrl)
                 .fitCenter()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .transform(new GlideRoundTransform(MyApplication.getContext(),8))
+                .transform(new GlideRoundTransform(MyApplication.getContext(), 8))
                 .crossFade(0)
                 .into(mImageView);  //crossFade是个淡入淡出效果
     }
@@ -76,35 +76,34 @@ public class ImageUtil {
     }
 
 
-
     public static void showRoundedImage(ImageView imageView, String imageUrl) {
 
         Glide.with(MyApplication.getContext())                                 //可以传getApplicationContext Activity Fragment
                 .load(imageUrl)                                  //图片地址
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .transform(new GlideRoundTransform(MyApplication.getContext(),4))
+                .transform(new GlideRoundTransform(MyApplication.getContext(), 4))
                 .centerCrop()
                 .into(imageView);
     }
 
 
-    public static void showGoodsImage(ImageView imageView, String imageUrl){
+    public static void showGoodsImage(ImageView imageView, String imageUrl) {
 
         Glide.with(MyApplication.getContext())                                 //可以传getApplicationContext Activity Fragment
                 .load(imageUrl)                                  //图片地址
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .transform(new GlideRoundTransform(MyApplication.getContext(),4))
+                .transform(new GlideRoundTransform(MyApplication.getContext(), 4))
                 .into(imageView);
     }
 
 
-    public static void showRoundedImage2(ImageView imageView, String imageUrl,int radius) {
+    public static void showRoundedImage2(ImageView imageView, String imageUrl, int radius) {
 
 
         Glide.with(MyApplication.getContext())                                 //可以传getApplicationContext Activity Fragment
                 .load(imageUrl)                                  //图片地址
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .transform(new GlideRoundTransform(MyApplication.getContext(),radius))
+                .transform(new GlideRoundTransform(MyApplication.getContext(), radius))
                 .into(imageView);
     }
 
@@ -121,19 +120,18 @@ public class ImageUtil {
     }
 
 
-
     //=========================Glide加载GIF图片配置==============================================================//
 
     //加载本地GIF
-    public static void showGIF(ImageView imageView,int img){
+    public static void showGIF(ImageView imageView, int img) {
         Glide.with(MyApplication.getContext()).load(img).asGif()
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(imageView);
     }
 
     //加载网络GIF
-    public static void showGIF(ImageView imageView,String img){
-       Glide.with(MyApplication.getContext()).load(img).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
+    public static void showGIF(ImageView imageView, String img) {
+        Glide.with(MyApplication.getContext()).load(img).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
     }
 
 

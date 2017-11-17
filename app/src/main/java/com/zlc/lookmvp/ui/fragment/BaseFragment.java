@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
  * 父类Fragment
  */
 
-public abstract class BaseFragment extends Fragment{
+public abstract class BaseFragment extends Fragment {
 
     protected View mView;
     protected Activity mActivity;
@@ -27,7 +27,7 @@ public abstract class BaseFragment extends Fragment{
         this.mActivity = getActivity();
         mView = initView();
 
-        ButterKnife.inject(this,mView);
+        ButterKnife.inject(this, mView);
         return mView;
     }
 
@@ -48,7 +48,10 @@ public abstract class BaseFragment extends Fragment{
 
     public abstract void initData();
 
-    protected void initListener(){};
+    protected void initListener() {
+    }
+
+    ;
 
     @Override
     public void onResume() {

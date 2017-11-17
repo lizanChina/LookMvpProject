@@ -32,6 +32,7 @@ public class MainActivity extends BaseActivity {
     Fragment currentFragment;
     SimpleArrayMap<Integer, String> mTitleArryMap = new SimpleArrayMap<>();
     private ZhihuFragment zhihuFragment;
+    private MeiziFragment meiziFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +46,17 @@ public class MainActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         toolbar.setOnMenuItemClickListener(onMenuItemClick);
 
-        switchFragment(zhihuFragment = new ZhihuFragment());
-        currentFragment = zhihuFragment;
+//        switchFragment(zhihuFragment = new ZhihuFragment());
+//        currentFragment = zhihuFragment;
+
+        switchFragment(meiziFragment = new MeiziFragment());
+        currentFragment = meiziFragment;
+
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 switchFragment(getFragmentById(item.getItemId()));
-                Log.e("条目内容===",item.toString());
+                Log.e("条目内容===", item.toString());
                 drawer.closeDrawer(GravityCompat.END);
                 return true;
             }
@@ -70,10 +75,10 @@ public class MainActivity extends BaseActivity {
                 fragment = new ZhihuFragment();
                 break;
             case R.id.topnewsitem:
-                fragment=new NewsFragment();
+                fragment = new NewsFragment();
                 break;
             case R.id.meiziitem:
-                fragment=new MeiziFragment();
+                fragment = new MeiziFragment();
                 break;
 
         }
@@ -104,5 +109,6 @@ public class MainActivity extends BaseActivity {
                     break;
             }
             return true;
-        }};
+        }
+    };
 }

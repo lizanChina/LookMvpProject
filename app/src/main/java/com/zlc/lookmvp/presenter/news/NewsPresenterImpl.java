@@ -20,7 +20,8 @@ public class NewsPresenterImpl implements INewsPresenter {
 
     private INewsModel newsModel;
     private INewsFragment iNewsFragment;
-    public NewsPresenterImpl(INewsFragment iNewsFragment){
+
+    public NewsPresenterImpl(INewsFragment iNewsFragment) {
 
         newsModel = new NewsModelImpl();
         this.iNewsFragment = iNewsFragment;
@@ -28,13 +29,13 @@ public class NewsPresenterImpl implements INewsPresenter {
 
 
     @Override
-    public void getNewsInfo(String url,int id) {
+    public void getNewsInfo(String url, int id) {
         Observable<NewsInfo> observable = RetrofitHelper.getService(url, INewsService.class).getNews(id);
         HttpUtils.requestNetByGet(observable, new HttpUtils.OnResultListener<NewsInfo>() {
 
             @Override
             public void onSuccess(NewsInfo newsInfo) {
-                if(newsInfo!=null){
+                if (newsInfo != null) {
                     iNewsFragment.getNewsInfoList(newsInfo.newsList);
                 }
             }
@@ -42,7 +43,7 @@ public class NewsPresenterImpl implements INewsPresenter {
             @Override
             public void onError(Throwable error, String msg) {
 
-                Log.e("error msg",msg);
+                Log.e("error msg", msg);
             }
         });
     }

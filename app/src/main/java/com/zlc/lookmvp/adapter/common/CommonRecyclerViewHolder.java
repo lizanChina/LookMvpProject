@@ -15,13 +15,14 @@ import com.zlc.lookmvp.util.ImageUtil;
  * Created by zlc on 2017/2/8.
  */
 
-public class CommonRecyclerViewHolder extends RecyclerView.ViewHolder{
+public class CommonRecyclerViewHolder extends RecyclerView.ViewHolder {
 
     private final SparseArray<View> mViews;
     private View mConvertView;
     private int mPosition;
     private Context mContext;
-    public CommonRecyclerViewHolder(Context context,View itemView) {
+
+    public CommonRecyclerViewHolder(Context context, View itemView) {
         super(itemView);
         this.mConvertView = itemView;
         this.mContext = context;
@@ -30,15 +31,16 @@ public class CommonRecyclerViewHolder extends RecyclerView.ViewHolder{
 
     /**
      * 通过控件的Id获取对应的控件，如果没有则加入views
+     *
      * @param viewId
      * @return
      */
-    public <T extends View> T getView(int viewId){
+    public <T extends View> T getView(int viewId) {
 
         View view = mViews.get(viewId);
-        if(view==null && mConvertView!=null){
+        if (view == null && mConvertView != null) {
             view = mConvertView.findViewById(viewId);
-            mViews.put(viewId,view);
+            mViews.put(viewId, view);
         }
         return (T) view;
     }
@@ -50,8 +52,7 @@ public class CommonRecyclerViewHolder extends RecyclerView.ViewHolder{
      * @param text
      * @return
      */
-    public CommonRecyclerViewHolder setText(int viewId, String text)
-    {
+    public CommonRecyclerViewHolder setText(int viewId, String text) {
         TextView view = getView(viewId);
         view.setText(text);
         return this;
@@ -60,7 +61,7 @@ public class CommonRecyclerViewHolder extends RecyclerView.ViewHolder{
     /**
      * 为ImageView设置图片
      */
-    public CommonRecyclerViewHolder setImageResource(int viewId,int resId){
+    public CommonRecyclerViewHolder setImageResource(int viewId, int resId) {
 
         ImageView imageView = getView(viewId);
         imageView.setImageResource(resId);
@@ -70,7 +71,7 @@ public class CommonRecyclerViewHolder extends RecyclerView.ViewHolder{
     /**
      * 为ImageView设置图片
      */
-    public CommonRecyclerViewHolder setImageBitmap(int viewId,Bitmap bitmap){
+    public CommonRecyclerViewHolder setImageBitmap(int viewId, Bitmap bitmap) {
 
         ImageView imageView = getView(viewId);
         imageView.setImageBitmap(bitmap);
@@ -78,9 +79,9 @@ public class CommonRecyclerViewHolder extends RecyclerView.ViewHolder{
     }
 
 
-    public void showImage(int viewId,String imageUrl){
+    public void showImage(int viewId, String imageUrl) {
         ImageView view = getView(viewId);
-        ImageUtil.show(view,imageUrl);
+        ImageUtil.show(view, imageUrl);
     }
 
 }

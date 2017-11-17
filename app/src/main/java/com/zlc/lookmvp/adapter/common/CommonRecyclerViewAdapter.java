@@ -12,7 +12,7 @@ import java.util.List;
  * RecycleView通用数据适配器
  */
 
-public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter<CommonRecyclerViewHolder>{
+public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter<CommonRecyclerViewHolder> {
 
 
     protected Context mContext;
@@ -20,7 +20,7 @@ public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter<
     protected View mView;
     private CommonRecyclerViewHolder viewHolder;
 
-    public CommonRecyclerViewAdapter(Context context, List<T> datas){
+    public CommonRecyclerViewAdapter(Context context, List<T> datas) {
         this.mContext = context;
         this.mDatas = datas;
     }
@@ -29,18 +29,18 @@ public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter<
     @Override
     public CommonRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mView = initView();
-        viewHolder = new CommonRecyclerViewHolder(mContext,mView);
+        viewHolder = new CommonRecyclerViewHolder(mContext, mView);
         return viewHolder;
     }
 
     @Override
     public int getItemCount() {
-        return mDatas!=null && mDatas.size()>0 ? mDatas.size() : 0;
+        return mDatas != null && mDatas.size() > 0 ? mDatas.size() : 0;
     }
 
     @Override
-    public  void onBindViewHolder(CommonRecyclerViewHolder holder, int position){
-        setData(holder,position);
+    public void onBindViewHolder(CommonRecyclerViewHolder holder, int position) {
+        setData(holder, position);
     }
 
 

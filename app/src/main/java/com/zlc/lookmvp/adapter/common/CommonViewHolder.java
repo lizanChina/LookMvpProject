@@ -20,39 +20,41 @@ public class CommonViewHolder {
     private View mConvertView;
     private int mPosition;
     private Context mContext;
-    private CommonViewHolder(Context context, ViewGroup parent,int layoutId,int position){
+
+    private CommonViewHolder(Context context, ViewGroup parent, int layoutId, int position) {
 
         this.mContext = context;
         this.mPosition = position;
         this.mViews = new SparseArray<>();
-        this.mConvertView = LayoutInflater.from(context).inflate(layoutId,parent,false);
+        this.mConvertView = LayoutInflater.from(context).inflate(layoutId, parent, false);
         mConvertView.setTag(this);
     }
 
     //获取ViewHolder对象
-    public static  CommonViewHolder getHolder(Context context, View convertView,ViewGroup parent,int layoutId,int position){
-        if(convertView==null){
-            return new CommonViewHolder(context,parent,layoutId,position);
+    public static CommonViewHolder getHolder(Context context, View convertView, ViewGroup parent, int layoutId, int position) {
+        if (convertView == null) {
+            return new CommonViewHolder(context, parent, layoutId, position);
         }
         return (CommonViewHolder) convertView.getTag();
     }
 
     /**
      * 通过控件的Id获取对应的控件，如果没有则加入views
+     *
      * @param viewId
      * @return
      */
-    public <T extends View> T getView(int viewId){
+    public <T extends View> T getView(int viewId) {
 
         View view = mViews.get(viewId);
-        if(view==null){
+        if (view == null) {
             view = mConvertView.findViewById(viewId);
-            mViews.put(viewId,view);
+            mViews.put(viewId, view);
         }
         return (T) view;
     }
 
-    public View getConvertView(){
+    public View getConvertView() {
         return mConvertView;
     }
 
@@ -63,8 +65,7 @@ public class CommonViewHolder {
      * @param text
      * @return
      */
-    public CommonViewHolder setText(int viewId, String text)
-    {
+    public CommonViewHolder setText(int viewId, String text) {
         TextView view = getView(viewId);
         view.setText(text);
         return this;
@@ -78,8 +79,7 @@ public class CommonViewHolder {
      * @param color
      * @return
      */
-    public CommonViewHolder setTextColor(int viewId, String color)
-    {
+    public CommonViewHolder setTextColor(int viewId, String color) {
         TextView view = getView(viewId);
         view.setTextColor(Color.parseColor(color));
         return this;
@@ -89,7 +89,7 @@ public class CommonViewHolder {
     /**
      * 为ImageView设置图片
      */
-    public CommonViewHolder setImageResource(int viewId,int resId){
+    public CommonViewHolder setImageResource(int viewId, int resId) {
 
         ImageView imageView = getView(viewId);
         imageView.setImageResource(resId);
@@ -99,7 +99,7 @@ public class CommonViewHolder {
     /**
      * 为ImageView设置图片
      */
-    public CommonViewHolder setImageBitmap(int viewId,Bitmap bitmap){
+    public CommonViewHolder setImageBitmap(int viewId, Bitmap bitmap) {
 
         ImageView imageView = getView(viewId);
         imageView.setImageBitmap(bitmap);

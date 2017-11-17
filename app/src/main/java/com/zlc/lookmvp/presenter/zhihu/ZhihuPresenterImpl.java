@@ -20,26 +20,27 @@ public class ZhihuPresenterImpl implements IZhihuPresenter {
 
     private IZhihuModel zhihuModel;
     private IZhihuFragment iZhihuFragment;
-    public ZhihuPresenterImpl(IZhihuFragment iZhihuFragment){
+
+    public ZhihuPresenterImpl(IZhihuFragment iZhihuFragment) {
         zhihuModel = new ZhihuModelImpl();
         this.iZhihuFragment = iZhihuFragment;
     }
 
 
     @Override
-    public void getZhihuInfo(String url,String date) {
+    public void getZhihuInfo(String url, String date) {
 
         Observable<ZhihuInfo> observable = RetrofitHelper.getService(url, IZhihuService.class).getTheDaily(date);
         HttpUtils.requestNetByGet(observable, new HttpUtils.OnResultListener<ZhihuInfo>() {
             @Override
             public void onSuccess(ZhihuInfo zhihuInfo) {
-                if(zhihuInfo!=null)
-                    iZhihuFragment.getZhihuInfoList(zhihuInfo.date,zhihuInfo.stories);
+                if (zhihuInfo != null)
+                    iZhihuFragment.getZhihuInfoList(zhihuInfo.date, zhihuInfo.stories);
             }
 
             @Override
             public void onError(Throwable error, String msg) {
-                Log.e("error msg",msg);
+                Log.e("error msg", msg);
             }
         });
     }
@@ -51,13 +52,13 @@ public class ZhihuPresenterImpl implements IZhihuPresenter {
         HttpUtils.requestNetByGet(observable, new HttpUtils.OnResultListener<ZhihuInfo>() {
             @Override
             public void onSuccess(ZhihuInfo zhihuInfo) {
-                if(zhihuInfo!=null)
+                if (zhihuInfo != null)
                     iZhihuFragment.getZhihuInfoList(zhihuInfo.date, zhihuInfo.stories);
             }
 
             @Override
             public void onError(Throwable error, String msg) {
-                Log.e("error msg",msg);
+                Log.e("error msg", msg);
             }
         });
     }

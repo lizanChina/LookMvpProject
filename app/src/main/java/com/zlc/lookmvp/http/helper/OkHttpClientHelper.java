@@ -14,9 +14,9 @@ public class OkHttpClientHelper {
 
     private final Cache cache;
     private OkHttpClient mClient;
-    private final  static  long TIMEOUT = 10000;  //超时时间
+    private final static long TIMEOUT = 10000;  //超时时间
 
-    private OkHttpClientHelper(){
+    private OkHttpClientHelper() {
 
         cache = CacheHelper.getInstance().getCache();
     }
@@ -24,10 +24,10 @@ public class OkHttpClientHelper {
 
     private static OkHttpClientHelper clientHelper;
 
-    public static OkHttpClientHelper getInstance(){
-        if(clientHelper==null){
-            synchronized (OkHttpClientHelper.class){
-                if(clientHelper==null){
+    public static OkHttpClientHelper getInstance() {
+        if (clientHelper == null) {
+            synchronized (OkHttpClientHelper.class) {
+                if (clientHelper == null) {
                     clientHelper = new OkHttpClientHelper();
                 }
             }
@@ -37,9 +37,9 @@ public class OkHttpClientHelper {
 
 
     //获取OKHttpClicent对象
-    public OkHttpClient getOkHttpClient(){
+    public OkHttpClient getOkHttpClient() {
 
-        if(mClient ==null) {
+        if (mClient == null) {
             mClient = new OkHttpClient.Builder()
                     .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
                     .readTimeout(TIMEOUT, TimeUnit.SECONDS)

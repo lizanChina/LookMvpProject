@@ -25,7 +25,6 @@ public class Urls {
     public static final String COMMON_URL = HOST + "nc/article/list/";
 
 
-
     // 图片
     public static final String IMAGES_URL = "http://api.laifudao.com/open/tupian.json";
 
@@ -34,5 +33,8 @@ public class Urls {
 
     //百度定位
     public static final String INTERFACE_LOCATION = "http://api.map.baidu.com/geocoder";
+
+    //干货集中营：因为多个网络共用一个Retrofit，所以baseUrl为空
+    public static final String GANHUO_API = "http://gank.io";
 
 }

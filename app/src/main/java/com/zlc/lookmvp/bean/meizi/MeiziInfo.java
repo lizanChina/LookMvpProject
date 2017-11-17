@@ -11,7 +11,7 @@ public class MeiziInfo {
 
     public List<MeiziBean> results;
 
-    public static class MeiziBean{
+    public static class MeiziBean {
 
         public String objectId;
         public String url;
@@ -19,7 +19,7 @@ public class MeiziInfo {
         public String desc;
         public String who;
         public boolean used;
-        public boolean hasFadedIn=false;
+        public boolean hasFadedIn = false;
         public int imageWidth;
         public int imageHeight;
     }

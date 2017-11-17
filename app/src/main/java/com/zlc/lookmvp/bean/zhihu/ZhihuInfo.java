@@ -18,7 +18,7 @@ public class ZhihuInfo {
     @SerializedName("stories")
     public ArrayList<ZhihuBean> stories;
 
-    public static class ZhihuBean{
+    public static class ZhihuBean {
         @SerializedName("images")
         public String[] images;
         @SerializedName("type")

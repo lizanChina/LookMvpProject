@@ -27,7 +27,7 @@ import butterknife.InjectView;
  * 知乎Fragment
  */
 
-public class ZhihuFragment extends BaseFragment implements IZhihuFragment,SwipeRefreshLayout.OnRefreshListener{
+public class ZhihuFragment extends BaseFragment implements IZhihuFragment, SwipeRefreshLayout.OnRefreshListener {
 
     @InjectView(R.id.id_recycle_zhihu)
     RecyclerView mZhihuRecycle;
@@ -50,7 +50,7 @@ public class ZhihuFragment extends BaseFragment implements IZhihuFragment,SwipeR
     @Override
     public void initData() {
 
-        SwipeRefreshUtil.setSiwpeLayout(mZhihuSwipe,mActivity,this);
+        SwipeRefreshUtil.setSiwpeLayout(mZhihuSwipe, mActivity, this);
         zhihuInfos = new ArrayList<>();
         zhihuPresenter = new ZhihuPresenterImpl(this);
         zhihuPresenter.getLastZhihuNews(url);
@@ -68,16 +68,16 @@ public class ZhihuFragment extends BaseFragment implements IZhihuFragment,SwipeR
     @Override
     public void getZhihuInfoList(String date, List<ZhihuInfo.ZhihuBean> zhihuInfos) {
 
-        if(zhihuInfos==null || zhihuInfos.size()<=0)
+        if (zhihuInfos == null || zhihuInfos.size() <= 0)
             return;
         loading = false;
         mZhihuSwipe.setRefreshing(false);
         this.zhihuInfos.addAll(zhihuInfos);
         this.currentLoadDate = date;
         Log.e("知乎集合 info", zhihuInfos.size() + "");
-        if(mZhihuAdapter==null) {
+        if (mZhihuAdapter == null) {
             mZhihuRecycle.setAdapter(mZhihuAdapter = new ZhihuAdapter(mActivity, this.zhihuInfos));
-        }else{
+        } else {
             mZhihuAdapter.notifyDataSetChanged();
         }
 
@@ -95,11 +95,11 @@ public class ZhihuFragment extends BaseFragment implements IZhihuFragment,SwipeR
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if(dy>0 && linearLayoutManager !=null){
+                if (dy > 0 && linearLayoutManager != null) {
                     int totalCout = linearLayoutManager.getItemCount();
                     int visibleItemCount = linearLayoutManager.getChildCount();
                     int firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
-                    if(!loading && (visibleItemCount + firstVisibleItemPosition ) >= totalCout){
+                    if (!loading && (visibleItemCount + firstVisibleItemPosition) >= totalCout) {
                         loading = true;
                         loadMoreData();
                     }
@@ -110,20 +110,20 @@ public class ZhihuFragment extends BaseFragment implements IZhihuFragment,SwipeR
 
     private void loadMoreData() {
 
-        Log.e("currentLoadDate==",currentLoadDate);
-        zhihuPresenter.getZhihuInfo("",currentLoadDate);
+        Log.e("currentLoadDate==", currentLoadDate);
+        zhihuPresenter.getZhihuInfo("", currentLoadDate);
     }
 
     @Override
     public void onRefresh() {
         new Handler().postDelayed(new Runnable() {
             @Override
-           public void run() {
+            public void run() {
                 zhihuInfos.clear();
                 currentLoadDate = "0";
                 loading = false;
                 zhihuPresenter.getLastZhihuNews(url);
             }
-        },1000);
+        }, 1000);
     }
 }

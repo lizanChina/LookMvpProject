@@ -27,7 +27,7 @@ import butterknife.InjectView;
  * 新闻Fragment
  */
 
-public class NewsFragment extends BaseFragment implements INewsFragment,SwipeRefreshLayout.OnRefreshListener{
+public class NewsFragment extends BaseFragment implements INewsFragment, SwipeRefreshLayout.OnRefreshListener {
 
     @InjectView(R.id.id_recycle_news)
     RecyclerView mRecycleNews;
@@ -51,7 +51,7 @@ public class NewsFragment extends BaseFragment implements INewsFragment,SwipeRef
     @Override
     public void initData() {
 
-        SwipeRefreshUtil.setSiwpeLayout(mNewsSwipe,mActivity,this);
+        SwipeRefreshUtil.setSiwpeLayout(mNewsSwipe, mActivity, this);
         newsInfos = new ArrayList<>();
         newsPresenter = new NewsPresenterImpl(this);
         newsPresenter.getNewsInfo("", currentIndex);
@@ -77,7 +77,7 @@ public class NewsFragment extends BaseFragment implements INewsFragment,SwipeRef
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (dy > 0 && linearLayoutManager!=null) //向下滚动
+                if (dy > 0 && linearLayoutManager != null) //向下滚动
                 {
                     int visibleItemCount = linearLayoutManager.getChildCount();
                     int totalItemCount = linearLayoutManager.getItemCount();
@@ -85,7 +85,7 @@ public class NewsFragment extends BaseFragment implements INewsFragment,SwipeRef
 
                     if (!loading && (visibleItemCount + pastVisiblesItems) >= totalItemCount) {
                         loading = true;
-                        currentIndex+=20;
+                        currentIndex += 20;
                         loadMoreData();
                     }
                 }
@@ -94,7 +94,7 @@ public class NewsFragment extends BaseFragment implements INewsFragment,SwipeRef
     }
 
     private void loadMoreData() {
-        Log.e("当前index",currentIndex+"");
+        Log.e("当前index", currentIndex + "");
         newsPresenter.getNewsInfo("", currentIndex);
     }
 
@@ -102,15 +102,15 @@ public class NewsFragment extends BaseFragment implements INewsFragment,SwipeRef
     @Override
     public void getNewsInfoList(List<NewsInfo.NewsBean> newsInfos) {
 
-        if(newsInfos==null || newsInfos.size()<=0)
+        if (newsInfos == null || newsInfos.size() <= 0)
             return;
         mNewsSwipe.setRefreshing(false);
         loading = false;
         this.newsInfos.addAll(newsInfos);
         Log.e("网易新闻集合 info", newsInfos.size() + "");
-        if(mNewsAdapter==null) {
+        if (mNewsAdapter == null) {
             mRecycleNews.setAdapter(mNewsAdapter = new NewsAdapter(mActivity, this.newsInfos));
-        }else{
+        } else {
             mNewsAdapter.notifyDataSetChanged();
         }
 
@@ -124,8 +124,8 @@ public class NewsFragment extends BaseFragment implements INewsFragment,SwipeRef
                 newsInfos.clear();
                 currentIndex = 0;
                 loading = false;
-                newsPresenter.getNewsInfo("",currentIndex);
+                newsPresenter.getNewsInfo("", currentIndex);
             }
-        },1000);
+        }, 1000);
     }
 }

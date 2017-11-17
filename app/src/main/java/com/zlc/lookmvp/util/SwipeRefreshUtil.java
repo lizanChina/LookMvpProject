@@ -21,7 +21,7 @@ public class SwipeRefreshUtil {
                 context.getResources().getColor(R.color.black)
         );
         //2 设置圆圈大小
-        siwpeLayout.setSize(DensityUtil.dip2px(context,50));
+        siwpeLayout.setSize(DensityUtil.dip2px(context, 50));
         //3 设置圆圈背景颜色
         siwpeLayout.setProgressBackgroundColorSchemeColor(Color.WHITE);
         //4 设置下拉刷新的监听

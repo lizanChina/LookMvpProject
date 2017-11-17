@@ -17,12 +17,12 @@ public class CacheHelper {
     private Cache mCache;
     //设置缓存目录
     private static File cacheFile;
-    private static long maxSize = 8*1024*1024;
+    private static long maxSize = 8 * 1024 * 1024;
 
-    private CacheHelper(){
+    private CacheHelper() {
 
         cacheFile = new File(MyApplication.getContext().getCacheDir().getAbsolutePath(), "mycache");
-        if(!cacheFile.exists()){
+        if (!cacheFile.exists()) {
             cacheFile.mkdir();
         }
     }
@@ -30,10 +30,10 @@ public class CacheHelper {
 
     private static CacheHelper helper;
 
-    public static CacheHelper getInstance(){
-        if(helper==null){
-            synchronized (CacheHelper.class){
-                if(helper==null){
+    public static CacheHelper getInstance() {
+        if (helper == null) {
+            synchronized (CacheHelper.class) {
+                if (helper == null) {
                     helper = new CacheHelper();
                 }
             }
@@ -43,8 +43,8 @@ public class CacheHelper {
 
 
     //返回缓存对象
-    public Cache getCache(){
-        if(mCache ==null)
+    public Cache getCache() {
+        if (mCache == null)
             mCache = new Cache(cacheFile, maxSize);
         return mCache;
     }

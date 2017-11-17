@@ -28,23 +28,22 @@ public class MeiziAdapter extends CommonRecyclerViewAdapter<MeiziInfo.MeiziBean>
 
     @Override
     public View initView() {
-        mView = View.inflate(mContext, R.layout.recycle_meizi_item,null);
+        mView = View.inflate(mContext, R.layout.recycle_meizi_item, null);
         return mView;
     }
 
     @Override
     public void setData(CommonRecyclerViewHolder holder, int position) {
         MeiziInfo.MeiziBean meizi = mDatas.get(holder.getAdapterPosition());
-        if(holder!=null){
+        if (holder != null) {
             ImageView id_iv_meizi = holder.getView(R.id.id_iv_meizi);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) id_iv_meizi.getLayoutParams();
-            int w = params.width = ScreenUtil.getScreenWidth(mContext) - DensityUtil.dip2px(mContext,10);
+            int w = params.width = ScreenUtil.getScreenWidth(mContext) - DensityUtil.dip2px(mContext, 10);
             params.height = (w * 9) / 12;
             id_iv_meizi.setLayoutParams(params);
-            ImageUtil.showRoundedImage(id_iv_meizi,meizi.url);
+            ImageUtil.showRoundedImage(id_iv_meizi, meizi.url);
         }
     }
-
 
 
 }

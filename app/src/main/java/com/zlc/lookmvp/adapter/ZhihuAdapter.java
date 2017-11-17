@@ -28,7 +28,7 @@ public class ZhihuAdapter extends CommonRecyclerViewAdapter<ZhihuInfo.ZhihuBean>
 
     @Override
     public View initView() {
-        mView = View.inflate(mContext, R.layout.recycle_zhihu_item,null);
+        mView = View.inflate(mContext, R.layout.recycle_zhihu_item, null);
         return mView;
     }
 
@@ -36,15 +36,15 @@ public class ZhihuAdapter extends CommonRecyclerViewAdapter<ZhihuInfo.ZhihuBean>
     public void setData(CommonRecyclerViewHolder holder, int position) {
 
         ZhihuInfo.ZhihuBean info = mDatas.get(position);
-        if(holder!=null){
-            holder.setText(R.id.id_tv_zhihu_title,info.title);
+        if (holder != null) {
+            holder.setText(R.id.id_tv_zhihu_title, info.title);
 
             ImageView id_iv_news = holder.getView(R.id.id_iv_zhihu);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) id_iv_news.getLayoutParams();
-            int w = params.width = DensityUtil.dip2px(mContext,93);
+            int w = params.width = DensityUtil.dip2px(mContext, 93);
             params.height = (w * 3) / 4;
             id_iv_news.setLayoutParams(params);
-            ImageUtil.show(id_iv_news,info.images[0]);
+            ImageUtil.show(id_iv_news, info.images[0]);
         }
     }
 

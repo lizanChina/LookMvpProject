@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by zlc on 2017/2/8.
  */
 
-public  abstract class BaseActivity extends AppCompatActivity{
+public abstract class BaseActivity extends AppCompatActivity {
 
 
     @Override

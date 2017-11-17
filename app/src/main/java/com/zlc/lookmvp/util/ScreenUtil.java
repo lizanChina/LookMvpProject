@@ -8,13 +8,13 @@ import android.util.DisplayMetrics;
  */
 public class ScreenUtil {
 
-    public static int getScreenWidth(Context context){
+    public static int getScreenWidth(Context context) {
 
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         return displayMetrics.widthPixels;
     }
 
-    public static int getScreenHeight(Context context){
+    public static int getScreenHeight(Context context) {
 
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         return displayMetrics.heightPixels;

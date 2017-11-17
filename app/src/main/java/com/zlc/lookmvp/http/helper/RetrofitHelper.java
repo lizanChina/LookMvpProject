@@ -15,7 +15,7 @@ public class RetrofitHelper {
     private final OkHttpClient mClient;
     private Retrofit mRetrofit;
 
-    private RetrofitHelper(){
+    private RetrofitHelper() {
 
         mClient = OkHttpClientHelper.getInstance().getOkHttpClient();
     }
@@ -24,10 +24,10 @@ public class RetrofitHelper {
     private static RetrofitHelper helper;
 
     //单例 保证对象唯一
-    public static RetrofitHelper getInstance(){
-        if(helper==null){
-            synchronized (RetrofitHelper.class){
-                if(helper==null){
+    public static RetrofitHelper getInstance() {
+        if (helper == null) {
+            synchronized (RetrofitHelper.class) {
+                if (helper == null) {
                     helper = new RetrofitHelper();
                 }
             }
@@ -36,9 +36,9 @@ public class RetrofitHelper {
     }
 
     //获取Retrofit对象
-    public Retrofit getRetrofit(String url){
+    public Retrofit getRetrofit(String url) {
 
-        if(mRetrofit==null) {
+        if (mRetrofit == null) {
             mRetrofit = new Retrofit.Builder()
                     .baseUrl(url + "/")
                     .addConverterFactory(GsonConverterFactory.create())  //添加Gson支持
@@ -50,7 +50,7 @@ public class RetrofitHelper {
     }
 
     //获取服务对象
-    public static<T> T getService(String url,Class<T> classz){
+    public static <T> T getService(String url, Class<T> classz) {
 
         return RetrofitHelper.getInstance()
                 .getRetrofit(url)

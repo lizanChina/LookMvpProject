@@ -11,7 +11,9 @@ import android.view.View;
 import com.zlc.lookmvp.R;
 import com.zlc.lookmvp.adapter.MeiziAdapter;
 import com.zlc.lookmvp.bean.meizi.MeiziInfo;
+import com.zlc.lookmvp.http.Urls;
 import com.zlc.lookmvp.presenter.meizi.MeiziPresenterImpl;
+import com.zlc.lookmvp.util.LogUtil;
 import com.zlc.lookmvp.util.SwipeRefreshUtil;
 import com.zlc.lookmvp.view.custom_view.GridItemDividerDecoration;
 import com.zlc.lookmvp.view.meizi.IMeiziFragment;
@@ -26,7 +28,7 @@ import butterknife.InjectView;
  * 妹子Fragment
  */
 
-public class MeiziFragment extends BaseFragment implements IMeiziFragment,SwipeRefreshLayout.OnRefreshListener {
+public class MeiziFragment extends BaseFragment implements IMeiziFragment, SwipeRefreshLayout.OnRefreshListener {
 
     @InjectView(R.id.id_meizi_recycle)
     RecyclerView mMeiziRecycle;
@@ -34,8 +36,7 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment,SwipeR
     SwipeRefreshLayout mMeiziSwipe;
     private MeiziPresenterImpl meiziPrestener;
     private MeiziAdapter mMeiziAdapter;
-    //妹子地址
-    private String url = "http://gank.io";
+
     private int page = 1;
     private LinearLayoutManager linearLayoutManager;
     private RecyclerView.OnScrollListener mloadmoreListener;
@@ -51,10 +52,10 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment,SwipeR
     @Override
     public void initData() {
 
-        SwipeRefreshUtil.setSiwpeLayout(mMeiziSwipe,mActivity,this);
+        SwipeRefreshUtil.setSiwpeLayout(mMeiziSwipe, mActivity, this);
         meiziInfos = new ArrayList<>();
         meiziPrestener = new MeiziPresenterImpl(this);
-        meiziPrestener.getMeiziInfo("",page);
+        meiziPrestener.getMeiziInfo(Urls.GANHUO_API, page);
         setRecycleView();
     }
 
@@ -62,7 +63,7 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment,SwipeR
 
         mMeiziRecycle.addItemDecoration(new GridItemDividerDecoration(getContext(), R.dimen.divider_height, R.color.divider_color));
         mMeiziRecycle.setItemAnimator(new DefaultItemAnimator());
-        mMeiziRecycle.setLayoutManager(linearLayoutManager =new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
+        mMeiziRecycle.setLayoutManager(linearLayoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
 
     }
 
@@ -78,7 +79,7 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment,SwipeR
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (dy > 0 && linearLayoutManager!=null) //向下滚动
+                if (dy > 0 && linearLayoutManager != null) //向下滚动
                 {
                     int visibleItemCount = linearLayoutManager.getChildCount();
                     int totalItemCount = linearLayoutManager.getItemCount();
@@ -86,7 +87,7 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment,SwipeR
 
                     if (!loading && (visibleItemCount + pastVisiblesItems) >= totalItemCount) {
                         loading = true;
-                        page+=1;
+                        page += 1;
                         loadMoreData();
                     }
                 }
@@ -95,8 +96,9 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment,SwipeR
     }
 
     private void loadMoreData() {
-        Log.e("当前页数==",page+"");
-        meiziPrestener.getMeiziInfo("",page);
+        Log.d(LogUtil.LogTag, "loadMoreData now page is: " + page);
+        Log.e("当前页数==", page + "");
+        meiziPrestener.getMeiziInfo(Urls.GANHUO_API, page);
 
     }
 
@@ -105,14 +107,16 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment,SwipeR
     public void getMeiziDataList(List<MeiziInfo.MeiziBean> meiziInfos) {
 
         mMeiziSwipe.setRefreshing(false);
-        if(meiziInfos==null || meiziInfos.size()<=0)
+        if (meiziInfos == null || meiziInfos.size() <= 0) {
+            Log.d(LogUtil.LogTag, "no data from server");
             return;
+        }
         loading = false;
         this.meiziInfos.addAll(meiziInfos);
-        Log.e("妹子数据集合==",meiziInfos.size()+"");
-        if(mMeiziAdapter==null) {
+        Log.e("妹子数据集合==", meiziInfos.size() + "");
+        if (mMeiziAdapter == null) {
             mMeiziRecycle.setAdapter(mMeiziAdapter = new MeiziAdapter(mActivity, this.meiziInfos));
-        }else{
+        } else {
             mMeiziAdapter.notifyDataSetChanged();
         }
 
@@ -122,14 +126,16 @@ public class MeiziFragment extends BaseFragment implements IMeiziFragment,SwipeR
     @Override
     public void onRefresh() {
 
+        Log.d(LogUtil.LogTag, "onRefresh now");
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 meiziInfos.clear();
                 page = 1;
                 loading = false;
-                meiziPrestener.getMeiziInfo("",page);
+                meiziPrestener.getMeiziInfo(Urls.GANHUO_API, page);
             }
-        },1000);
+        }, 1000);
     }
 }
